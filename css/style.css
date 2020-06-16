@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap');
+
+.hidden{
+    width: 1px;
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    position: absolute;
+}
+.content{
+    height: 100vh;
+    /* overflow: hidden; */
+    color: white;
+}
+
+section{
+    height: 100vh;
+/*     width: 1200px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #021B3A;
+    position: relative;
+}
+section:nth-child(2){
+    background: url(../images/blue_bg.png) no-repeat;
+    background-size: cover; /*change to gradation */
+}
+section:nth-child(3){
+    background-color: #C50004;
+}
+section:nth-child(4){
+    background-color: white;
+    color: #021B3A;
+}
+section:nth-child(5), section:nth-child(6){
+    background-color: #1D1D1D;
+}
+
+.text{
+    position: absolute;
+/*     transition: all 0.5s 0.5s; */
+}
+.text.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.big_title{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 3.25em;
+    display: block;
+    margin-bottom: 30px;
+/*     background-color: blue; */
+}
+.small_title{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 0.45em;
+    display: block;
+    margin-bottom: 15px;
+/*     background-color: red; */
+}
+.info_title_big{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 4em;
+    display: block;
+    margin-bottom: 30px;
+}
+.info_title{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.75em;
+    display: block;
+    margin-bottom: 15px;
+    line-height: 1.1em;
+}
+.info_text{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 3em;
+    margin-bottom: 10px;
+    display: block;
+}
+.description_text{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    line-height: 1.6;
+/*     background-color: green; */
+}
+
+section:nth-child(2) .text{
+    left: 3vw;
+    width: 36vw;
+/*     max-width: 440px; */
+}
+#section_2_img{
+    position: absolute;
+    right: 5vw;
+    width: 54vw;
+    max-height: 100vh;
+/*     background-color: orange; */
+}
+#section_2_img:first-child{
+    width: 50%;
+}
+#glass{
+    width: 53%;
+    margin-right: 20px;
+}
+#bottle{
+    width: 24%;
+}
+
+#section_3_bg{
+    position: absolute;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    background: url(../images/section_3_bg.png) no-repeat 50%;
+    background-size: cover;
+}
+section:nth-child(3) .text{
+    right: 3vw;
+    width: 32vw;
+    text-align: right;
+}
+#empty_glass{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+/*     position: absolute; */
+}
+
+section:nth-child(4) .text{
+    left: 10vw;
+    width: 27vw;
+}
+#section_4_bg{
+    position: absolute;
+    right: 0;
+    width: 50vw;
+    height: 100vh;
+    background: url(../images/section_4_bg.png) no-repeat 50%;
+    background-size: cover;
+}
+
+section:nth-child(5) .text{
+    right: 10vw;
+    width: 21vw;
+    text-align: right;
+}
+section:nth-child(5) p:nth-child(2){
+    margin-bottom: 123px;
+}
+section:nth-child(5) p{
+    margin-bottom: 43px;
+}
+#section_5_bg{
+    position: absolute;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    background: url(../images/section_5_bg.png) no-repeat 50%;
+    background-size: cover;
+}
+
+section:nth-child(6) .text{
+    left: 10vw;
+    width: 21vw;
+    text-align: left;
+}
+section:nth-child(6) p{
+    margin-bottom: 43px;
+}
+
+#section_6_bg{
+    position: absolute;
+    right: 0;
+    width: 50vw;
+    height: 100vh;
+    background: url(../images/section_6_bg.png) no-repeat 50%;
+    background-size: cover;
+}
+
+section:nth-child(7) .text:nth-child(2){
+    left: 10vw;
+    width: 20vw;
+    text-align: left;
+}
+section:nth-child(7) .text:nth-child(3){
+    right: 10vw;
+    width: 21.4vw;
+    text-align: right;
+}
+section:nth-child(7) .text:nth-child(3) p{
+    margin-bottom: 43px;
+}
