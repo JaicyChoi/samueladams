@@ -8,6 +8,8 @@ const image = document.querySelectorAll('.image');
 
 let last_animation = 0;
 let index = 0;
+let image_number;
+let arr = [];
 let time = 0;
 
 // document.querySelectorAll('.image').forEach(image => function(){
@@ -18,10 +20,26 @@ let time = 0;
 // });
 document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
+// for( let i = 0 ; i < image.length ; i++ ){
+//     image[i].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
+//     time++;
+// }
+
+// arr가 0부터 8까지 채워질 때까지 무한 루프
 for( let i = 0 ; i < image.length ; i++ ){
-    image[i].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
-    time++;
+    let random_number = Math.floor(Math.random() * image.length );
+
+    if( image_number === random_number ){
+
+    }
+    else{
+        image[random_number].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
+        time++;
+        image_number = random_number;
+        arr.push(image_number);
+    }
 }
+    
 
 function toggleText(index, state){
     if( state === 'show' )
