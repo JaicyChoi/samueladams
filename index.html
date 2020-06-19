@@ -8,12 +8,34 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <img id="logo" src="images/logo.png" alt="samueladams">
+    <span id="menu-icon">&#9776;</span>
+    <div id="menu-container">
+        <span id="close_btn">&times;</span>
+            <ul id="menu-content">
+                <li>HOME</li>
+                <li>ABOUT</li>
+                <li>DETAIL</li>
+                <li>FIND</li>
+                <li>SHARE</li>
+                <li>SUBSCRIBE</li>
+            </ul>
+        </div>
+    <ul id="social">
+        <li><img src="images/facebook.png" alt="facebook"></li>
+        <li><img src="images/instagram.png" alt="instagram"></li>
+        <li><img src="images/twitter.png" alt="twitter"></li>
+        <li><img src="images/kakao.png" alt="kakao"></li>
+    </ul>
     <div class="content">
-        <section>
+        <section id="home">
             <h1 class="hidden">intro</h1>
-            section 1
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/to8fyookigM?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=0&loop=1&playlist=to8fyookigM" frameborder="0"  allowfullscreen></iframe>
+            </div>
+            <div id="logo_img"></div>
         </section>
-        <section>
+        <section id="about">
             <div class="text">
                 <h1 class="big_title"><span class="small_title">SAMUELADAMS</span>BOSTON LAGAR</h1>
                 <p class="description_text">Samuel Adams Boston Lager helped lead the American beer revolution, reviving a passion for full-flavored brews.</p>
@@ -30,6 +52,7 @@
             </div>
             <div id="section_3_bg"></div>
             <img id="empty_glass" src="images/empty_glass.png" alt="empty beer glass">
+            <img id="full_glass" src="images/full_glass.png" alt="full beer glass">
         </section>
         <section>
             <div class="text">
@@ -38,7 +61,7 @@
             </div>
             <div id="section_4_bg"></div>
         </section>
-        <section>
+        <section id="detail">
             <div class="text">
                 <h1 class="hidden">detail information</h1>
                 <p>
@@ -107,55 +130,112 @@
                 </p>
             </div>
         </section>
-        <section>
+        <section id="find">
             <h1 class="hidden">Find store</h1>
-            <div class="text">
-                <span>Beer Finder</span>
-                <span>Find Sam</span>
-                <span>Find Samuel Adams Near You</span>
+            <div id="beer_finder">
+                <div id="beer_finder_bg"></div>
+                <div class="text">
+                    <span class="info_title">Beer Finder</span>
+                    <span class="info_title_big">Find Sam</span>
+                    <span class="description_text_big">Find Samuel Adams Near You</span>
+                </div>
             </div>
-            <div>
-                <span>Find near</span>
-                <input type="text" placeholder="city, state or zip code">
-                <span>Filter by style</span>
-                <select>
-                    <option selected>Rebel Grapefruit</option>
-                </select>
+            <div id="search_option_bg">
+                <div id="search_option">
+                    <span class="description_text_big">Find near</span>
+                    <input type="text" placeholder="city, state or zip code">
+                    <span class="description_text_big">Filter by style</span>
+                    <select>
+                        <option selected>Rebel Grapefruit</option>
+                    </select>
+                    <button>Cheers!</button>
+                </div>
             </div>
             <div id="map"></div>
         </section>
-        <section>
-            <div></div>
+        <section id="share">
+            <div class="container">
+                <div class="gallery-container w-2">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img1.jpg" alt="gallery_img1">
+                  </div>
+                </div>          
+                <div class="gallery-container w-2 h-2">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img2.jpg" alt="gallery_img2">
+                  </div>
+                </div>           
+                <div class="gallery-container">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img3.jpg" alt="gallery_img3">
+                  </div>
+                </div>          
+                <div class="gallery-container h-2">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img4.jpg" alt="gallery_img4">
+                  </div>
+                </div>
+                <div class="gallery-container">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img5.jpg" alt="gallery_img5">
+                  </div>
+                </div>
+                <div class="gallery-container">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img6.jpg" alt="gallery_img6">
+                  </div>
+                </div>
+                <div class="gallery-container h-2">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img7.jpg" alt="gallery_img7">
+                  </div>
+                </div>
+                <div class="gallery-container w-2">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img8.jpg" alt="gallery_img8">
+                  </div>
+                </div>
+                <div class="gallery-container">
+                  <div class="gallery-item">
+                      <img class="image" src="images/gallery_img9.jpg" alt="gallery_img9">
+                  </div>
+                </div>
+            </div>
             <div class="text">
-                <p>Share Your</p>
-                <p>#BostonLagerMoment</p>
+                <p class="description_text_big">Share Your</p>
+                <p class="big_title">#BostonLagerMoment</p>
                 <button>Follow Sam</button>
             </div>
         </section>
+        <section id="subscribe">
+            <div id="footer_img">
+                <div class="text">
+                    <p class="description_text_big">Samuel Adams</p>
+                    <p class="big_title">Boston Lagar</p>
+                    <p class="info_title">The craft beer that helped start a revolution.</p>
+                </div>
+            </div>
+            <div id="footer_bottom">
+                <div id="newsletter">
+                    <p>
+                        <span class="info_title_big">Newseltter</span>
+                        <span class="description_text">Register your email address and receive the latest news on Sam.</span>
+                    </p>
+                    <p>
+                        <input type="text" placeholder="your_email@samueladams.com">
+                        <button>Register</button>
+                    </p>
+                </div>
+                <p class="footer_small_text" id="copyright">Independent Craft Brewers Association Certified<span>© Sam Adams 2020</span></p>
+                <ul class="footer_small_text">
+                    <li>Investor Relations</li>
+                    <li>Privacy Policy</li>
+                    <li>Responsibility</li>
+                    <li>Terms and Conditions</li>
+                </ul>
+            </div>
+        </section>
     </div>
-    <footer>
-        <div class="text">
-            <p>Samuel Adams</p>
-            <p>Boston Lagar</p>
-            <p>The craft beer that helped start a revolution.</p>
-        </div>
-        <div>
-            <p>
-                <span>Newseltter</span>
-                <span>Register your email address and receive the latest news on Sam.</span>
-            </p>
-            <p>
-                <input type="text" placeholder="your_email@samueladams.com">
-                <button>Register</button>
-            </p>
-            <p>Independent Craft Brewers Association Certified<span>© Sam Adams 2020</span></p>
-            <ul>
-                <li>Investor Relations</li>
-                <li>Privacy Policy</li>
-                <li>Responsibility</li>
-                <li>Terms and Conditions</li>
-            </ul>
-        </div>
-    </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>

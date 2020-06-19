@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap');
 
+body{
+    overflow: hidden;
+}
+
 .hidden{
     width: 1px;
     height: 1px;
@@ -9,9 +13,112 @@
     position: absolute;
 }
 .content{
-    height: 100vh;
-    /* overflow: hidden; */
+    /* height: 100vh; */
+    overflow: hidden;
     color: white;
+}
+
+#logo{
+    position: fixed;
+    top: 35px;
+    left: 40px;
+    width: 7vw;
+    z-index: 2;
+    min-width: 100px;
+}
+#menu-icon{
+    position: fixed;
+    top: 23px;
+    right: 35px;
+    color: white;
+    z-index: 2;
+    font-size: 3.25em;
+    font-weight: bold;
+}
+#menu-icon:hover{
+    cursor: pointer;
+}
+#menu-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    left: 100vw;
+    transition: .5s ease-in-out;
+}
+#close_btn{
+    position: absolute;
+    top: 3px;
+    right: 47px;
+    color: white;
+    z-index: 1;
+    font-size: 5em;
+}
+#close_btn:hover{
+    cursor: pointer;
+}
+#menu-content{
+    position: relative;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    font-size: 2.7em;
+    text-align: center;
+    font-family: 'IM Fell Double Pica', serif;
+    transition: .5s .5s ease-in-out;
+/*     background-color: red; */
+/*     display: none; */
+    opacity: 0;;
+}
+#menu-content li{
+    opacity: .7;
+    transition: .2s ease-in-out;
+}
+#menu-content li:hover{
+    background-color: #C50004;
+    text-shadow: 0 0 5px white;
+    opacity: 1;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#social{
+    position: absolute;
+    bottom: 5vh;
+    right: 42px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+/*     background-color: red; */
+    height: 30vh;
+    opacity: .9;
+}
+#social:before{
+   content: '';
+   display: block;
+   position: absolute;
+   left: 50%;
+   top: -23.5vh;
+   height: 70%;
+   border-left: 1.5px solid white;
+}
+#social li{
+    position: relative;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+}
+#social li img{
+    width: 100%;
+    height: 100%;
 }
 
 section{
@@ -27,7 +134,7 @@ section:nth-child(2){
     background: url(../images/blue_bg.png) no-repeat;
     background-size: cover; /*change to gradation */
 }
-section:nth-child(3){
+section:nth-child(3), section:nth-child(9){
     background-color: #C50004;
 }
 section:nth-child(4){
@@ -40,7 +147,9 @@ section:nth-child(5), section:nth-child(6){
 
 .text{
     position: absolute;
-/*     transition: all 0.5s 0.5s; */
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.5s 0.5s;
 }
 .text.show{
     opacity: 1;
@@ -86,6 +195,56 @@ section:nth-child(5), section:nth-child(6){
     line-height: 1.6;
 /*     background-color: green; */
 }
+.description_text_big{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+}
+.footer_small_text{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 0.875em;
+    color: white;
+}
+
+
+.video-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+/*     display: flex;
+    align-items: center;
+    justify-content: center; */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.video-container:after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.video-container iframe{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-width: 177.6vh;
+    min-height: 100vh;
+    transform: translate(-50%, -50%);
+}
+#logo_img{
+    width: 45%;
+    height: 20%;
+    background: url(../images/main_logo.png) no-repeat center;
+    background-size: contain;
+    opacity: .7;
+/*     background-color: red; */
+}
 
 section:nth-child(2) .text{
     left: 3vw;
@@ -105,15 +264,19 @@ section:nth-child(2) .text{
 #glass{
     width: 53%;
     margin-right: 20px;
+    opacity: 0;
+    transition: all .3s .1s ease-in-out;
 }
 #bottle{
     width: 24%;
+    opacity: 0;
+    transition: all .3s .2s ease-in-out;
 }
 
 #section_3_bg{
     position: absolute;
     left: 0;
-    width: 50vw;
+    width: 50%;
     height: 100vh;
     background: url(../images/section_3_bg.png) no-repeat 50%;
     background-size: cover;
@@ -124,11 +287,29 @@ section:nth-child(3) .text{
     text-align: right;
 }
 #empty_glass{
-    position: fixed;
+/*     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
+    opacity: 0;
     z-index: 1;
-/*     position: absolute; */
+    width: 40vw;
+    min-width: 400px;
+    max-width: 700px;
+    position: absolute;
+    transition: all .5s ease-in-out;
+}
+#full_glass{
+/*     position: fixed;
+    top: 50%;
+    transform: translateY(-50%); */
+    z-index: 1;
+    width: 40vw;
+    min-width: 400px;
+    max-width: 700px;
+/*     clip: rect(35vh 30vw 100vh 0); */
+/*     clip: rect(0vh 35vw 100vh 0); */
+    position: absolute;
+    transition: all .5s ease-in-out;
 }
 
 section:nth-child(4) .text{
@@ -138,7 +319,7 @@ section:nth-child(4) .text{
 #section_4_bg{
     position: absolute;
     right: 0;
-    width: 50vw;
+    width: 50%;
     height: 100vh;
     background: url(../images/section_4_bg.png) no-repeat 50%;
     background-size: cover;
@@ -158,7 +339,7 @@ section:nth-child(5) p{
 #section_5_bg{
     position: absolute;
     left: 0;
-    width: 50vw;
+    width: 50%;
     height: 100vh;
     background: url(../images/section_5_bg.png) no-repeat 50%;
     background-size: cover;
@@ -176,7 +357,7 @@ section:nth-child(6) p{
 #section_6_bg{
     position: absolute;
     right: 0;
-    width: 50vw;
+    width: 50%;
     height: 100vh;
     background: url(../images/section_6_bg.png) no-repeat 50%;
     background-size: cover;
@@ -194,4 +375,282 @@ section:nth-child(7) .text:nth-child(3){
 }
 section:nth-child(7) .text:nth-child(3) p{
     margin-bottom: 43px;
+}
+
+#beer_finder{
+    position: absolute;
+    top: 0;
+/*     background: url(../images/section_8_bg.png) no-repeat 50%; */
+    background-size: cover;
+/*     background-color: red; */
+    width: 100vw;
+    height: 27vh /*250px*/
+}
+#beer_finder_bg{
+   width: 100%;
+   height: 100%;
+   background: url(../images/section_8_bg.png) no-repeat 50%;
+   background-size: cover;
+   filter:brightness(50%);
+}
+#beer_finder .text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+#beer_finder .text span{
+    margin-bottom: 10px;
+}
+#search_option_bg{
+    position: absolute;
+    top: 27vh;
+    float: left;
+    width: 100vw;
+    height: 8vh;/*100px*/
+    background-color: white;
+}
+#search_option{
+    position: relative;
+    width: 1200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+/*     background-color: orange; */
+    text-align: center;
+}
+#search_option span{
+    color: #021B3A;
+}
+#search_option button{
+    border: none;
+    width: 140px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: #C50004;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+}
+#search_option input{
+    border: none;
+    width: 300px;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    border-bottom: 2px solid #021B3A;
+    margin: 0 30px 0 20px;
+}
+#search_option select{
+    border: none;
+    width: 300px;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    border-bottom: 2px solid #021B3A;
+/*     background-color: green; */
+    margin: 0 30px 0 20px;
+}
+#search_option button:focus{
+    outline: none;
+}
+#map{
+    position: absolute;
+    top: 35vh;
+    width: 100vw;
+    height: 65vh;
+    z-index: 1;
+    background-color: #bfffbf;
+}
+
+section:nth-child(9) .text{
+    text-align: center;
+}
+section:nth-child(9) .text p:nth-child(1){
+    margin-bottom: 5px;
+}
+section:nth-child(9) button{
+    border: none;
+    width: 210px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: #C50004;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+section:nth-child(9) button:focus{
+    outline: none;
+}
+.container{
+    position: relative;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: 25%;
+    filter: brightness(100%);
+    transition: all .5s .5s ease-in-out;
+}
+.gallery-item{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow: hidden;
+}
+.gallery-item .image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position:50% 50%;
+}
+.w-1{
+    grid-column: span 1;
+}
+.w-2{
+    grid-column: span 2;
+}
+.h-1{
+    grid-row: span 1;
+}
+.h-2{
+    grid-row: span 2;
+}
+
+section:nth-child(10){
+    /* transform: translate3d(0, 100vh, 0); */
+    position: relative;
+    background-color: #021B3A;
+}
+/* footer{
+    position: relative;
+    background-color: #021B3A;
+} */
+#footer_img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+/*     height: 23vh; */
+    height: 100vh;
+    background: url(../images/last_bg.jpg) no-repeat right;
+    background-size: cover;
+}
+#footer_img .text{
+    position: relative;
+    width: 90%;
+    top: 75%;
+    left: 3vw;
+/*     transform: translateY(0); */
+    color: white;
+/*     background-color: red; */
+}
+#footer_img .text .big_title{
+    margin-bottom: 15px;
+}
+#newsletter{
+    position: relative;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .5s .5s ease-in-out;
+/*     background-color: orange; */
+}
+#footer_bottom{
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100vh;
+    color: white;
+}
+#footer_bottom p:nth-child(1){
+    text-align: center;
+    position: relative;
+    margin-bottom: 70px;
+/*     background-color: red; */
+}
+#footer_bottom p:nth-child(1) .info_title_big{
+    margin-bottom: 15px;
+}
+#newsletter p:nth-child(2){
+    position: relative;
+    text-align: right;
+/*     background-color: blue; */
+}
+#footer_bottom input{
+    width: 75%;
+    border: none;
+    border-radius: 7px;
+    height: 55px;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+    text-indent: 15px;
+    margin-right: 5px;
+}
+#footer_bottom input:focus{
+    outline: none;
+}
+#footer_bottom button{
+    width: 23%;
+    max-width: 120px;
+    height: 55px;
+    background-color: #C50004;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+#footer_bottom button:focus{
+    outline: none;
+}
+#copyright{
+    position: absolute;
+    bottom: 1vw;
+    left: -48.5vw;
+    color: white;
+/*     background-color: red; */
+}
+
+#copyright span{
+    margin-left: 1.5vw;
+}
+
+#footer_bottom ul{
+    position: absolute;
+    bottom: 1vw;
+    right: 0;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+/*     background-color: red; */
+}
+
+@media screen and (max-width: 1200px){
+    body{
+        font-size: 15px;
+    }
+    #newsletter p:nth-child(2){
+        text-align: center;
+    }
+    #footer_bottom input{
+        width: 90%;
+        margin-bottom: 15px;
+        margin-right: none;
+    }
+    #footer_bottom button{
+        width: 30%;
+        min-width: 135px;
+    }
+}
+@media screen and (max-width: 980px){
+    body{
+        font-size: 14px;
+    }
 }
