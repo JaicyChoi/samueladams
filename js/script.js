@@ -245,7 +245,7 @@ function move_prev(){
         document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
         document.querySelector('.container').style.filter = 'brightness(100%)';
     }
-    if( index === 9 ) document.querySelector('#indicator').style.display = 'block';
+    document.querySelector('#indicator').style.display = 'block';
     newsletter.style.opacity = '0';
 
     section.forEach(function(section, i){
@@ -365,7 +365,7 @@ function move_next(){
     }
 
     if( index === 9 ){
-        document.querySelector('#indicator').style.display = 'block';
+        document.querySelector('#indicator').style.display = 'none';
         newsletter.style.opacity = '1';
     }
 }
