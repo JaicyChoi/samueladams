@@ -8,9 +8,32 @@ const image = document.querySelectorAll('.image');
 
 let last_animation = 0;
 let index = 0;
-let image_number;
-let arr = [];
+let arr = new Array();
 let time = 0;
+
+(function (n){
+    let tmp;
+    let random_num;
+   
+    for( let i = 0 ; i < image.length ; i++ )
+        arr.push(i);
+
+    for( let i = 0 ; i < arr.length ; i++ )
+    {
+        random_num = Math.floor(Math.random() * n);
+        tmp = arr[i];
+        arr[i] = arr[random_num];
+        arr[random_num] = tmp;
+    }
+})(image.length);
+
+// document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+
+for( let i = 0 ; i <  image.length ; i++ ){
+    image[arr[i]].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
+    image[arr[i]].style.opacity = '0';
+    time++;
+}
 
 // document.querySelectorAll('.image').forEach(image => function(){
 //     console.log(time);
@@ -18,7 +41,6 @@ let time = 0;
 //     image.style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
 //     time++;
 // });
-document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
 // for( let i = 0 ; i < image.length ; i++ ){
 //     image[i].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
@@ -26,21 +48,21 @@ document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 // }
 
 // arr가 0부터 8까지 채워질 때까지 무한 루프
-for( let i = 0 ; i < image.length ; i++ ){
-    let random_number = Math.floor(Math.random() * image.length );
+// while( i < image.length ){
+//     random_number = Math.floor( Math.random() * image.length );
 
-    if( image_number === random_number ){
-
-    }
-    else{
-        image[random_number].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
-        time++;
-        image_number = random_number;
-        arr.push(image_number);
-    }
-}
+//     for( let j= 0 ; j < arr.length ; j++ )
+//         if( arr[j] === random_number ){ isExist = true; break; }
     
-
+//     if( isExist === false ){
+//         console.log('random : ' + random_number);
+//         //image[random_number].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
+//         time++;
+//         arr.push(random_number);
+//         i++;
+//     }
+// }
+    
 function toggleText(index, state){
     if( state === 'show' )
         section[index].querySelectorAll('.text').forEach( text => text.classList.add('show'));
@@ -129,8 +151,14 @@ function move_prev(){
         full_glass.style.opacity = '0';
         empty_glass.style.opacity = '0';
     }
-    if( index === 8 ) document.querySelector('.container').style.filter = 'brightness(50%)';
-    else document.querySelector('.container').style.filter = 'brightness(100%)';
+    if( index === 8 ){
+        document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
+        document.querySelector('.container').style.filter = 'brightness(50%)';
+    }
+    else{
+        document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+        document.querySelector('.container').style.filter = 'brightness(100%)';
+    }
 
     newsletter.style.opacity = '0';
 
@@ -209,9 +237,13 @@ function move_next(){
         empty_glass.style.top = '-50%';
     }
     if( index === 8 ){
+        document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
         document.querySelector('.container').style.filter = 'brightness(50%)';
     }
-    else document.querySelector('.container').style.filter = 'brightness(100%)';
+    else{
+        document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+        document.querySelector('.container').style.filter = 'brightness(100%)';
+    }
 
     if( index === 9 ) newsletter.style.opacity = '1';
 }
@@ -224,6 +256,9 @@ const menu_content = document.querySelector('#menu-content');
 const menu_content_list = document.querySelectorAll('#menu-content li');
 
 menu_icon.addEventListener('click', function(){
+    // if(  menu_container.style.left !== '100vw' )
+    //     menu_container.style.left = '100vw';
+
     menu_container.style.opacity = '1';
     menu_container.style.left = '0';
     menu_content.style.top = '50%';
@@ -242,6 +277,12 @@ close_btn.addEventListener('click', function(){
 });
 
 menu_content_list[0].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('#glass').style.opacity = '0';
     document.querySelector('#bottle').style.opacity = '0';
 
@@ -259,6 +300,7 @@ menu_content_list[0].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
     
+    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
     if( index !== 0 ){
         toggleText(index, 'hide');
         index = 0;
@@ -271,6 +313,12 @@ menu_content_list[0].addEventListener('click', function(){
     }
 });
 menu_content_list[1].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('.container').style.filter = 'brightness(100%)';
 
     newsletter.style.opacity = '0';
@@ -284,6 +332,8 @@ menu_content_list[1].addEventListener('click', function(){
     full_glass.style.top = '50%';
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
+
+    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
     if( index !== 1 ){
         toggleText(index, 'hide');
@@ -299,6 +349,12 @@ menu_content_list[1].addEventListener('click', function(){
     }
 });
 menu_content_list[2].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('#glass').style.opacity = '0';
     document.querySelector('#bottle').style.opacity = '0';
 
@@ -317,6 +373,8 @@ menu_content_list[2].addEventListener('click', function(){
     full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
     full_glass.style.opacity = '1';
 
+    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+
     if( index !== 4 ){
         toggleText(index, 'hide');
         index = 4;
@@ -329,6 +387,12 @@ menu_content_list[2].addEventListener('click', function(){
     }
 });
 menu_content_list[3].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('#glass').style.opacity = '0';
     document.querySelector('#bottle').style.opacity = '0';
 
@@ -347,6 +411,8 @@ menu_content_list[3].addEventListener('click', function(){
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
 
+    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+
     if( index !== 7 ){
         toggleText(index, 'hide');
         index = 7;
@@ -359,6 +425,12 @@ menu_content_list[3].addEventListener('click', function(){
     }
 });
 menu_content_list[4].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('#glass').style.opacity = '0';
     document.querySelector('#bottle').style.opacity = '0';
 
@@ -385,10 +457,16 @@ menu_content_list[4].addEventListener('click', function(){
             }
         });
         document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
-        document.querySelector('.container').style.filter = 'brightness(50%)';      
+        document.querySelector('.container').style.filter = 'brightness(50%)';
     }
 });
 menu_content_list[5].addEventListener('click', function(){
+    menu_container.style.left = '100vw';
+    menu_container.style.opacity = '0';
+    menu_content.style.top = '60%';
+    menu_content.style.opacity = '0';
+    menu_container.style.transition = 'all .5s ease-in-out';
+
     document.querySelector('#glass').style.opacity = '0';
     document.querySelector('#bottle').style.opacity = '0';
 
@@ -404,6 +482,8 @@ menu_content_list[5].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
+
+    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
     if( index !== 9 ){
         toggleText(index, 'hide');
