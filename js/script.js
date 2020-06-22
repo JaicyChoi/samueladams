@@ -70,22 +70,75 @@ function toggleText(index, state){
         section[index].querySelectorAll('.text').forEach( text => text.classList.remove('show'));
 }
 
+window.onbeforeunload = function(event) {
+    section[0].scrollIntoView();
+}
+
 toggleText(0, 'show');
 
-document.addEventListener('wheel', event => {
-    let delta = event.wheelDelta;
+if( navigator.userAgent.indexOf('Firefox') > 0 ){
+    document.addEventListener('DOMMouseScroll', event => {
+        let delta = -event.detail;
+        let realtime = new Date().getTime();
+
+        if( realtime - last_animation < animation_interval ){
+            // event.preventDefault();
+            return;
+        }
+        if( delta < 0 ) move_next();
+        else move_prev();
+    
+        last_animation = realtime;
+    });
+}
+else{
+    document.addEventListener('mousewheel', event => {
+        let delta = event.wheelDelta;
+        let realtime = new Date().getTime();
+
+        if( realtime - last_animation < animation_interval ){
+            // event.preventDefault();
+            return;
+        }
+        if( delta < 0 ) move_next();
+        else move_prev();
+    
+        last_animation = realtime;
+    });
+}
+
+//mobile access - have some problems
+let start, change;
+let filter = 'win16|win32|win64|mac|macintel';
+
+if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
     let realtime = new Date().getTime();
 
-    if( realtime - last_animation < animation_interval ){
-        // event.preventDefault();
-        return;
+    // if( realtime - last_animation < animation_interval ){
+    //     // event.preventDefault();
+    //     return;
+    // }
+
+    document.addEventListener('touchstart', (e) => {
+        start = e.touches[0].clientY;
+    });
+    document.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        let touch = e.touches[0];
+        change = start - touch.clientY;
+    })
+    document.addEventListener('touchend', move);
+    
+    function move(){
+        if(change > window.innerHeight/2 )
+            move_next();
+        else if( change < -window.innerHeight/2 )
+            move_prev();
     }
+    section[9].style.margin = '0 0 200px 0';
 
-    if( delta < 0 ) move_next();
-    else move_prev();
-
-    last_animation = realtime;
-})
+    // last_animation = realtime;
+}
 
 function move_prev(){
     if( index < 1 ) return;
@@ -122,6 +175,34 @@ function move_prev(){
     }
     if( index === 2 ) full_glass.style.clip = 'rect(100vh 100vw 100vh 0)'; //8.75
     
+    window.addEventListener('resize', function(){
+        if( window.innerWidth <= 768 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(35vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(20vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(10vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1000 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(37vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1200 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(40vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1400 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(45vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(27vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(13vh 100vw 100vh 0)';
+        }
+        else{
+            if( index === 3 ) full_glass.style.clip = 'rect(50vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(15vh 100vw 100vh 0)';
+        }
+    });
+    
     if( window.innerWidth <= 768 ){
         if( index === 3 ) full_glass.style.clip = 'rect(35vh 100vw 100vh 0)';
         if( index === 4 ) full_glass.style.clip = 'rect(20vh 100vw 100vh 0)';
@@ -129,6 +210,11 @@ function move_prev(){
     }
     else if( window.innerWidth <= 1000 ){
         if( index === 3 ) full_glass.style.clip = 'rect(37vh 100vw 100vh 0)';
+        if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+        if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+    }
+    else if( window.innerWidth <= 1200 ){
+        if( index === 3 ) full_glass.style.clip = 'rect(40vh 100vw 100vh 0)';
         if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
         if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
     }
@@ -159,7 +245,7 @@ function move_prev(){
         document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
         document.querySelector('.container').style.filter = 'brightness(100%)';
     }
-
+    if( index === 9 ) document.querySelector('#indicator').style.display = 'block';
     newsletter.style.opacity = '0';
 
     section.forEach(function(section, i){
@@ -214,6 +300,11 @@ function move_next(){
         if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
         if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
     }
+    else if( window.innerWidth <= 1200 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(40vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+        }
     else if( window.innerWidth <= 1400 ){
         if( index === 3 ) full_glass.style.clip = 'rect(45vh 100vw 100vh 0)';
         if( index === 4 ) full_glass.style.clip = 'rect(27vh 100vw 100vh 0)';
@@ -224,6 +315,34 @@ function move_next(){
         if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
         if( index === 5 ) full_glass.style.clip = 'rect(15vh 100vw 100vh 0)';
     }
+
+    window.addEventListener('resize', function(){
+        if( window.innerWidth <= 768 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(35vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(20vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(10vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1000 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(37vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1200 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(40vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(26vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(11vh 100vw 100vh 0)';
+        }
+        else if( window.innerWidth <= 1400 ){
+            if( index === 3 ) full_glass.style.clip = 'rect(45vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(27vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(13vh 100vw 100vh 0)';
+        }
+        else{
+            if( index === 3 ) full_glass.style.clip = 'rect(50vh 100vw 100vh 0)';
+            if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
+            if( index === 5 ) full_glass.style.clip = 'rect(15vh 100vw 100vh 0)';
+        }
+    });
 
 //     if( index === 3 ) full_glass.style.clip = 'rect(50vh 100vw 100vh 0)';
 //     if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
@@ -245,7 +364,10 @@ function move_next(){
         document.querySelector('.container').style.filter = 'brightness(100%)';
     }
 
-    if( index === 9 ) newsletter.style.opacity = '1';
+    if( index === 9 ){
+        document.querySelector('#indicator').style.display = 'block';
+        newsletter.style.opacity = '1';
+    }
 }
 
 //menu controll
@@ -277,6 +399,7 @@ close_btn.addEventListener('click', function(){
 });
 
 menu_content_list[0].addEventListener('click', function(){
+    document.querySelector('#indicator').style.display = 'block';
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -313,6 +436,7 @@ menu_content_list[0].addEventListener('click', function(){
     }
 });
 menu_content_list[1].addEventListener('click', function(){
+    document.querySelector('#indicator').style.display = 'block';
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -349,6 +473,7 @@ menu_content_list[1].addEventListener('click', function(){
     }
 });
 menu_content_list[2].addEventListener('click', function(){
+    document.querySelector('#indicator').style.display = 'block';
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -387,6 +512,7 @@ menu_content_list[2].addEventListener('click', function(){
     }
 });
 menu_content_list[3].addEventListener('click', function(){
+    document.querySelector('#indicator').style.display = 'block';
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -425,6 +551,7 @@ menu_content_list[3].addEventListener('click', function(){
     }
 });
 menu_content_list[4].addEventListener('click', function(){
+    document.querySelector('#indicator').style.display = 'block';
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -494,6 +621,7 @@ menu_content_list[5].addEventListener('click', function(){
             section.scrollIntoView({behavior: 'smooth'});
             }
         });
+        document.querySelector('#indicator').style.display = 'none';
         newsletter.style.opacity = '1';
     }
 });
