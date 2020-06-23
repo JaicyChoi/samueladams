@@ -133,6 +133,64 @@ body{
     animation: animate 1.3s linear infinite;
     opacity: 0;
 }
+#mobile_indicator{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-52%, -50%);
+    color: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+/*     background-color: blue; */
+    /* display: none; */
+}
+#up{
+    position: absolute;
+    top: 0px;
+    font-size: 3em;
+    transform: rotate(90deg);
+/*     background-color: green; */
+    animation: mobile_up 1.3s linear infinite;
+}
+#down{
+    position: absolute;
+    bottom: 0px;
+    font-size: 3em;
+    transform: rotate(-90deg);
+/*      background-color: green; */
+    animation: mobile_down 1.3s linear infinite;
+}
+
+@keyframes mobile_up{
+    0%{
+        top: 2vh;
+        opacity: 0;
+    }
+    55%{
+        top: 1vh;
+        opacity: 1;
+    }
+    100%{
+        top: 0vh;
+        opacity: 0;
+    }
+}
+@keyframes mobile_down{
+    0%{
+        bottom: 2vh;
+        opacity: 0;
+    }
+    55%{
+        bottom: 1vh;
+        opacity: 1;
+    }
+    100%{
+        bottom: 0vh;
+        opacity: 0;
+    }
+}
 
 section{
     height: 100vh;
@@ -470,10 +528,10 @@ section:nth-child(7) .text:nth-child(3) p{
 #map{
     position: absolute;
     top: 35vh;
-    width: 100vw;
+    width: 100%;
     height: 65vh;
     z-index: 1;
-    background-color: #bfffbf;
+/*     background-color: #bfffbf; */
 }
 
 section:nth-child(9) .text{
@@ -534,6 +592,7 @@ section:nth-child(9) button:focus{
 
 section:nth-child(10){
     /* transform: translate3d(0, 100vh, 0); */
+    /* top: -35.6vh; */
     position: relative;
     background-color: #021B3A;
 }

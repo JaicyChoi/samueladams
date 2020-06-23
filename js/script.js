@@ -35,6 +35,22 @@ for( let i = 0 ; i <  image.length ; i++ ){
     time++;
 }
 
+//map
+let mapContainer = document.getElementById('map'),
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.551499, 126.993151),
+        level: 5 
+    };
+
+let map = new kakao.maps.Map(mapContainer, mapOption);
+map.setZoomable(false);
+
+let mapTypeControl = new kakao.maps.MapTypeControl();
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+let zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 // document.querySelectorAll('.image').forEach(image => function(){
 //     console.log(time);
 //     image.style.opacity = '0';
@@ -112,7 +128,9 @@ let start, change;
 let filter = 'win16|win32|win64|mac|macintel';
 
 if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
-    let realtime = new Date().getTime();
+    empty_glass.style.display = 'none';
+    full_glass.style.display = 'none';
+    // let realtime = new Date().getTime();
 
     // if( realtime - last_animation < animation_interval ){
     //     // event.preventDefault();
@@ -135,7 +153,7 @@ if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
         else if( change < -window.innerHeight/2 )
             move_prev();
     }
-    section[9].style.margin = '0 0 200px 0';
+    // section[9].style.top = '-35.6vh';
 
     // last_animation = realtime;
 }
