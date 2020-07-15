@@ -303,7 +303,7 @@ section:nth-child(2) .text{
     position: absolute;
     right: 5vw;
     width: 54vw;
-    max-height: 100vh;
+    max-width: 1200px;
 /*     background-color: orange; */
 }
 #section_2_img:first-child{
