@@ -4,7 +4,11 @@
 body{
     overflow: hidden;
 }
-
+body.scroll_fix{
+    height: 100vh;
+    position: fixed;
+/*     top: -100vh; */
+}
 .hidden{
     width: 1px;
     height: 1px;
@@ -13,11 +17,10 @@ body{
     position: absolute;
 }
 .content{
-    /* height: 100vh; */
+    position: relative;
     overflow: hidden;
     color: white;
 }
-
 #logo{
     position: fixed;
     top: 35px;
@@ -42,7 +45,8 @@ body{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 3;
+    top: 0;
+    z-index: 4;
     background-color: rgba(0, 0, 0, 0.8);
     opacity: 0;
     left: 100vw;
@@ -177,6 +181,8 @@ section{
     align-items: center;
     background-color: #021B3A;
     position: relative;
+}
+section:nth-child(1){
 }
 section:nth-child(2){
     background: url(../images/blue_bg.png) no-repeat;

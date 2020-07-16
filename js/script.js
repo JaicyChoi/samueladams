@@ -5,6 +5,7 @@ const empty_glass = document.querySelector('#empty_glass');
 const full_glass = document.querySelector('#full_glass');
 const newsletter = document.querySelector('#newsletter');
 const image = document.querySelectorAll('.image');
+let menu_click = false;
 
 let last_animation = 0;
 let index = 0;
@@ -94,6 +95,7 @@ toggleText(0, 'show');
 
 if( navigator.userAgent.indexOf('Firefox') > 0 ){
     document.addEventListener('DOMMouseScroll', event => {
+        if( menu_click === true ) return;
         let delta = -event.detail;
         let realtime = new Date().getTime();
 
@@ -109,6 +111,7 @@ if( navigator.userAgent.indexOf('Firefox') > 0 ){
 }
 else{
     document.addEventListener('mousewheel', event => {
+        if( menu_click === true ) return;
         let delta = event.wheelDelta;
         let realtime = new Date().getTime();
 
@@ -413,9 +416,19 @@ const close_btn = document.querySelector('#close_btn');
 const menu_content = document.querySelector('#menu-content');
 const menu_content_list = document.querySelectorAll('#menu-content li');
 
+//need fixing
+menu_content_list.forEach(li => li.addEventListener('click', () => {
+    menu_click = false;
+    document.body.classList.remove('scroll_fix');
+    document.body.style.removeProperty('top');
+}));
+
 menu_icon.addEventListener('click', function(){
     // if(  menu_container.style.left !== '100vw' )
     //     menu_container.style.left = '100vw';
+    menu_click = true;
+    document.body.classList.add('scroll_fix');
+    document.body.style.top = -(index * 100) + 'vh';
 
     menu_container.style.opacity = '1';
     menu_container.style.left = '0';
@@ -427,6 +440,11 @@ menu_icon.addEventListener('click', function(){
     });
 });
 close_btn.addEventListener('click', function(){
+    menu_click = false;
+    document.body.style.removeProperty('top');
+    document.body.classList.remove('scroll_fix');
+    section[index].scrollIntoView({behavior: 'auto'});
+
     menu_container.style.left = '100vw';
     menu_container.style.opacity = '0';
     menu_content.style.top = '60%';
@@ -543,7 +561,7 @@ menu_content_list[2].addEventListener('click', function(){
     empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '1';
 
-    full_glass.style.position = 'fixed'
+    full_glass.style.position = 'fixed';
     full_glass.style.top = '50%';
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
