@@ -135,6 +135,7 @@ if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
     is_mobile = true;
     document.querySelector('#indicator').style.display = 'none';
     document.querySelector('#mobile_indicator').style.display = 'block';
+    document.querySelector('.video-container');.style.display = 'none';
     document.querySelector('#mobile_home').style.display='block';
     empty_glass.style.display = 'none';
     full_glass.style.display = 'none';
