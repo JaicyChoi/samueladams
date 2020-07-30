@@ -1,5 +1,6 @@
 //page scroll animation
 const section = document.querySelectorAll('section');
+const social = document.querySelector('#social');
 const animation_interval = 1000;
 const empty_glass = document.querySelector('#empty_glass');
 const full_glass = document.querySelector('#full_glass');
@@ -187,10 +188,12 @@ function move_prev(){
     full_glass.style.transform = 'translateY(-50%)';
 
     if( index === 1){
+        social.style.opacity = '0';
         document.querySelector('#glass').style.opacity = '1';
         document.querySelector('#bottle').style.opacity = '1';
     }
     else{
+        social.style.opacity = '0.9';
         document.querySelector('#glass').style.opacity = '0';
         document.querySelector('#bottle').style.opacity = '0';
     }
@@ -310,11 +313,13 @@ function move_next(){
     });
 
     if( index === 1){
+        social.style.opacity = 0;
         document.querySelector('#glass').style.opacity = '1';
         document.querySelector('#bottle').style.opacity = '1';
         if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ) document.querySelector('#up').style.display = 'inline-block';
     }
     else{
+        social.style.opacity = 0.9;
         document.querySelector('#glass').style.opacity = '0';
         document.querySelector('#bottle').style.opacity = '0';
     }
@@ -439,7 +444,7 @@ menu_icon.addEventListener('click', function(){
     menu_container.style.opacity = '1';
     menu_container.style.left = '0';
     menu_content.style.top = '50%';
-    menu_content.style.opacity = '1';
+    menu_content.style.opacity = '1'
     // menu_container.style.transition = 'none';
     window.addEventListener('resize', function(){
         menu_container.style.transition = 'none';
@@ -459,6 +464,7 @@ close_btn.addEventListener('click', function(){
 });
 
 menu_content_list[0].addEventListener('click', function(){
+    social.style.opacity = '0.9';
     if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
         document.querySelector('#indicator').style.display = 'none';
         document.querySelector('#down').style.display = 'inline-block';
@@ -487,7 +493,8 @@ menu_content_list[0].addEventListener('click', function(){
     full_glass.style.top = '50%';
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
-    
+
+    section[9].style.top = '-35.6vh';
     document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
     if( index !== 0 ){
         toggleText(index, 'hide');
@@ -501,6 +508,7 @@ menu_content_list[0].addEventListener('click', function(){
     }
 });
 menu_content_list[1].addEventListener('click', function(){
+    social.style.opacity = '0';
     if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
         document.querySelector('#down').style.display = 'inline-block';
         document.querySelector('#up').style.display = 'inline-block';
@@ -526,9 +534,9 @@ menu_content_list[1].addEventListener('click', function(){
     full_glass.style.top = '50%';
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
-
     document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
-
+    
+    section[9].style.top = '-35.6vh';
     if( index !== 1 ){
         toggleText(index, 'hide');
         index = 1;
@@ -572,9 +580,9 @@ menu_content_list[2].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
     full_glass.style.opacity = '1';
-
     document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
+    section[9].style.top = '-35.6vh';
     if( index !== 4 ){
         toggleText(index, 'hide');
         index = 4;
@@ -616,9 +624,9 @@ menu_content_list[3].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
-
     document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
+    section[9].style.top = '-35.6vh';
     if( index !== 7 ){
         toggleText(index, 'hide');
         index = 7;
@@ -658,6 +666,8 @@ menu_content_list[4].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
+
+    section[9].style.top = '-35.6vh';
 
     if( index !== 8 ){
         toggleText(index, 'hide');
@@ -699,8 +709,9 @@ menu_content_list[5].addEventListener('click', function(){
     full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
-
     document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+
+    section[9].style.top = '-35.6vh';
 
     if( index !== 9 ){
         toggleText(index, 'hide');

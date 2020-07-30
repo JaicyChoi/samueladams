@@ -801,6 +801,7 @@ section:nth-child(10){
     /*     background-color: red; */
         height: 40vh;
         opacity: .9;
+        transition: all .5s ease;
     }
     #social:before{
        content: '';
