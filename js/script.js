@@ -129,10 +129,13 @@ else{
 //mobile access - have some problems
 let start, change;
 let filter = 'win16|win32|win64|mac|macintel';
+let is_mobile = false;
 
 if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
+    is_mobile = true;
     document.querySelector('#indicator').style.display = 'none';
     document.querySelector('#mobile_indicator').style.display = 'block';
+    document.querySelector('#mobile_home').style.display='block';
     empty_glass.style.display = 'none';
     full_glass.style.display = 'none';
 
@@ -429,6 +432,8 @@ menu_icon.addEventListener('click', function(){
     menu_click = true;
     document.body.classList.add('scroll_fix');
     document.body.style.top = -(index * 100) + 'vh';
+    if( is_mobile === true && index === 9 )
+        section[9].style.top = 0;
 
     menu_container.style.opacity = '1';
     menu_container.style.left = '0';
