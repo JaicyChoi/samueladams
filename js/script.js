@@ -440,6 +440,8 @@ menu_icon.addEventListener('click', function(){
     document.body.style.top = -(index * 100) + 'vh';
     if( is_mobile === true && index === 9 )
         section[9].style.top = 0;
+    else
+        section[9].style.top = 0;
 
     menu_container.style.opacity = '1';
     menu_container.style.left = '0';
