@@ -1,3 +1,6 @@
+if(window.NodeList && !NodeList.prototype.forEach)
+    NodeList.prototype.forEach = Array.prototype.forEach;
+
 //page scroll animation
 const section = document.querySelectorAll('section');
 const social = document.querySelector('#social');
@@ -12,6 +15,15 @@ let last_animation = 0;
 let index = 0;
 let arr = new Array();
 let time = 0;
+
+if( filter.indexOf(navigator.platform.toLowerCase()) > 0 ){
+    setTimeout(function(){
+        document.querySelector('.ie_guide').classList.add('show');
+    }, 1500);
+    document.querySelector('.guide_close').addEventListener('click', function(){
+        document.querySelector('.ie_guide').classList.remove('show');
+    });    
+}
 
 (function (n){
     let tmp;
@@ -28,8 +40,6 @@ let time = 0;
         arr[random_num] = tmp;
     }
 })(image.length);
-
-// document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
 
 for( let i = 0 ; i <  image.length ; i++ ){
     image[arr[i]].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
@@ -52,50 +62,24 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
 let zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-// document.querySelectorAll('.image').forEach(image => function(){
-//     console.log(time);
-//     image.style.opacity = '0';
-//     image.style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
-//     time++;
-// });
-
-// for( let i = 0 ; i < image.length ; i++ ){
-//     image[i].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
-//     time++;
-// }
-
-// arr가 0부터 8까지 채워질 때까지 무한 루프
-// while( i < image.length ){
-//     random_number = Math.floor( Math.random() * image.length );
-
-//     for( let j= 0 ; j < arr.length ; j++ )
-//         if( arr[j] === random_number ){ isExist = true; break; }
-    
-//     if( isExist === false ){
-//         console.log('random : ' + random_number);
-//         //image[random_number].style.transition = 'all .5s ' + '.' + time + 's ease-in-out';
-//         time++;
-//         arr.push(random_number);
-//         i++;
-//     }
-// }
     
 function toggleText(index, state){
     if( state === 'show' )
-        section[index].querySelectorAll('.text').forEach( text => text.classList.add('show'));
+        section[index].querySelectorAll('.text').forEach(function(text){
+            text.classList.add('show')
+        });
     else
-        section[index].querySelectorAll('.text').forEach( text => text.classList.remove('show'));
+        section[index].querySelectorAll('.text').forEach(function(text){
+            text.classList.remove('show')
+        });
 }
 
-window.onbeforeunload = function(event) {
-    section[0].scrollIntoView();
-}
+window.onbeforeunload = function(){section[0].scrollIntoView();}
 
 toggleText(0, 'show');
 
 if( navigator.userAgent.indexOf('Firefox') > 0 ){
-    document.addEventListener('DOMMouseScroll', event => {
+    document.addEventListener('DOMMouseScroll', function(event){
         if( menu_click === true ) return;
         let delta = -event.detail;
         let realtime = new Date().getTime();
@@ -111,7 +95,7 @@ if( navigator.userAgent.indexOf('Firefox') > 0 ){
     });
 }
 else{
-    document.addEventListener('mousewheel', event => {
+    document.addEventListener('mousewheel', function(event){
         if( menu_click === true ) return;
         let delta = event.wheelDelta;
         let realtime = new Date().getTime();
@@ -127,9 +111,8 @@ else{
     });
 }
 
-//mobile access - have some problems
+//mobile access
 let start, change;
-let filter = 'win16|win32|win64|mac|macintel';
 let is_mobile = false;
 
 if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
@@ -145,35 +128,10 @@ if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ){
 
     document.querySelector('#up').addEventListener('click', move_prev);
     document.querySelector('#down').addEventListener('click', move_next);
-    // let realtime = new Date().getTime();
-
-    // if( realtime - last_animation < animation_interval ){
-    //     // event.preventDefault();
-    //     return;
-    // }
-
-    // document.addEventListener('touchstart', (e) => {
-    //     start = e.touches[0].clientY;
-    // });
-    // document.addEventListener('touchmove', (e) => {
-    //     e.preventDefault();
-    //     let touch = e.touches[0];
-    //     change = start - touch.clientY;
-    // })
-    // document.addEventListener('touchend', move);
-    
-    // function move(){
-    //     if(change > window.innerHeight/2 )
-    //         move_next();
-    //     else if( change < -window.innerHeight/2 )
-    //         move_prev();
-    // }
-    
-    // last_animation = realtime;
 }
 
 function move_prev(){
-    if( index < 1 ) return;
+    if( index < 1 ) { social.style.zIndex = '3'; return; }
     toggleText(index, 'hide');
     index--;
 
@@ -183,9 +141,14 @@ function move_prev(){
     empty_glass.style.zIndex = '1';
 
     empty_glass.style.top = '50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
+
     full_glass.style.top = '50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
 
     if( index === 1){
         social.style.opacity = '0';
@@ -194,18 +157,24 @@ function move_prev(){
     }
     else{
         social.style.opacity = '0.9';
+        social.style.zIndex = '0';
         document.querySelector('#glass').style.opacity = '0';
         document.querySelector('#bottle').style.opacity = '0';
     }
+    if( index === 0 ) social.style.zIndex = 3;
     if( index < 2 ){
         empty_glass.style.position = 'absolute';
         empty_glass.style.top = '50%';
-        empty_glass.style.transform = 'translateY(-50%)';
+        empty_glass.style.left = '50%';
+        empty_glass.style.transform = 'translate(-50%, -50%)';
+        // empty_glass.style.transform = 'translateY(-50%)';
         empty_glass.style.opacity = '0';
 
         full_glass.style.position = 'absolute'
         full_glass.style.top = '50%';
-        full_glass.style.transform = 'translateY(-50%)';
+        full_glass.style.left = '50%';
+        full_glass.style.transform = 'translate(-50%, -50%)';
+        // full_glass.style.transform = 'translateY(-50%)';
     }
     if( index === 2 ) full_glass.style.clip = 'rect(100vh 100vw 100vh 0)'; //8.75
     
@@ -262,23 +231,24 @@ function move_prev(){
         if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
         if( index === 5 ) full_glass.style.clip = 'rect(15vh 100vw 100vh 0)';
     }
-//     if( index === 3 ) full_glass.style.clip = 'rect(50vh 100vw 100vh 0)';
-//     if( index === 4 ) full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
-//     if( index === 5 ) full_glass.style.clip = 'rect(15vh 100vw 100vh 0)';
 
     if( index === 6 ) full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     if( index > 6 ){
         full_glass.style.opacity = '0';
         empty_glass.style.opacity = '0';
     }
+    if( index === 7 ){
+        full_glass.style.zIndex = '-1';
+        empty_glass.style.zIndex = '-1';
+    }
     if( index === 8 ){
-        document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
+        document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '1'});
         document.querySelector('.container').style.filter = 'brightness(50%)';
         section[8].style.zIndex = '1';
         if( filter.indexOf(navigator.platform.toLowerCase()) < 0 ) document.querySelector('#down').style.display = 'inline-block';
     }
     else{
-        document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+        document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
         document.querySelector('.container').style.filter = 'brightness(100%)';
         section[8].style.zIndex = '0';
     }
@@ -320,18 +290,23 @@ function move_next(){
     }
     else{
         social.style.opacity = 0.9;
+        social.style.zIndex = 0;
         document.querySelector('#glass').style.opacity = '0';
         document.querySelector('#bottle').style.opacity = '0';
     }
     if( index === 2 ){
         empty_glass.style.position = 'fixed';
         empty_glass.style.top = '50%';
-        empty_glass.style.transform = 'translateY(-50%)';
+        empty_glass.style.left = '50%';
+        empty_glass.style.transform = 'translate(-50%, -50%)';
+        // empty_glass.style.transform = 'translateY(-50%)';
         empty_glass.style.opacity = '1';
 
         full_glass.style.position = 'fixed'
         full_glass.style.top = '50%';
-        full_glass.style.transform = 'translateY(-50%)';
+        full_glass.style.left = '50%';
+        full_glass.style.transform = 'translate(-50%, -50%)';
+        // full_glass.style.transform = 'translateY(-50%)';
         full_glass.style.clip = 'rect(100vh 100vw 100vh 0)'; //8.75
     }
     
@@ -401,12 +376,12 @@ function move_next(){
         empty_glass.style.top = '-50%';
     }
     if( index === 8 ){
-        document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
+        document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '1'});
         document.querySelector('.container').style.filter = 'brightness(50%)';
         section[8].style.zIndex = '1';
     }
     else{
-        document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+        document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
         document.querySelector('.container').style.filter = 'brightness(100%)';
         section[8].style.zIndex = '0';
     }
@@ -426,11 +401,13 @@ const menu_content = document.querySelector('#menu-content');
 const menu_content_list = document.querySelectorAll('#menu-content li');
 
 //need fixing
-menu_content_list.forEach(li => li.addEventListener('click', () => {
-    menu_click = false;
-    document.body.classList.remove('scroll_fix');
-    document.body.style.removeProperty('top');
-}));
+menu_content_list.forEach(function(li){
+    li.addEventListener('click', function(){
+        menu_click = false;
+        document.body.classList.remove('scroll_fix');
+        document.body.style.removeProperty('top');
+    });
+});
 
 menu_icon.addEventListener('click', function(){
     // if(  menu_container.style.left !== '100vw' )
@@ -488,16 +465,20 @@ menu_content_list[0].addEventListener('click', function(){
 
     empty_glass.style.position = 'absolute';
     empty_glass.style.top = '50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '0';
 
     full_glass.style.position = 'absolute'
     full_glass.style.top = '50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
 
     section[9].style.top = '-35.6vh';
-    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+    document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
     if( index !== 0 ){
         toggleText(index, 'hide');
         index = 0;
@@ -529,14 +510,18 @@ menu_content_list[1].addEventListener('click', function(){
 
     empty_glass.style.position = 'absolute';
     empty_glass.style.top = '50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '0';
 
     full_glass.style.position = 'absolute'
     full_glass.style.top = '50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(100vh 100vw 100vh 0)';
-    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+    document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
     
     section[9].style.top = '-35.6vh';
     if( index !== 1 ){
@@ -574,15 +559,19 @@ menu_content_list[2].addEventListener('click', function(){
 
     empty_glass.style.position = 'fixed';
     empty_glass.style.top = '50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '1';
 
     full_glass.style.position = 'fixed';
     full_glass.style.top = '50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(30vh 100vw 100vh 0)';
     full_glass.style.opacity = '1';
-    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+    document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
 
     section[9].style.top = '-35.6vh';
     if( index !== 4 ){
@@ -618,15 +607,19 @@ menu_content_list[3].addEventListener('click', function(){
 
     empty_glass.style.position = 'fixed';
     empty_glass.style.top = '-50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '0';
 
     full_glass.style.position = 'fixed'
     full_glass.style.top = '-50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
-    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+    document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
 
     section[9].style.top = '-35.6vh';
     if( index !== 7 ){
@@ -660,12 +653,16 @@ menu_content_list[4].addEventListener('click', function(){
 
     empty_glass.style.position = 'fixed';
     empty_glass.style.top = '-50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '0';
 
     full_glass.style.position = 'fixed'
     full_glass.style.top = '-50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
 
@@ -681,7 +678,7 @@ menu_content_list[4].addEventListener('click', function(){
                 section.style.zIndex = '1';
             }
         });
-        document.querySelectorAll('.image').forEach(image => image.style.opacity = '1');
+        document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '1'});
         document.querySelector('.container').style.filter = 'brightness(50%)';
     }
 });
@@ -703,15 +700,19 @@ menu_content_list[5].addEventListener('click', function(){
 
     empty_glass.style.position = 'fixed';
     empty_glass.style.top = '-50%';
-    empty_glass.style.transform = 'translateY(-50%)';
+    empty_glass.style.left = '50%';
+    empty_glass.style.transform = 'translate(-50%, -50%)';
+    // empty_glass.style.transform = 'translateY(-50%)';
     empty_glass.style.opacity = '0';
 
     full_glass.style.position = 'fixed'
     full_glass.style.top = '-50%';
-    full_glass.style.transform = 'translateY(-50%)';
+    full_glass.style.left = '50%';
+    full_glass.style.transform = 'translate(-50%, -50%)';
+    // full_glass.style.transform = 'translateY(-50%)';
     full_glass.style.clip = 'rect(0vh 100vw 100vh 0)';
     full_glass.style.opacity = '0';
-    document.querySelectorAll('.image').forEach(image => image.style.opacity = '0');
+    document.querySelectorAll('.image').forEach(function(image){image.style.opacity = '0'});
 
     section[9].style.top = '-35.6vh';
 

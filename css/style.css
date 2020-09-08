@@ -1,6 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap');
 
+.ie_guide{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -70px);
+    color: white;
+    z-index: 2;
+    width: 50%;
+    max-width: 570px;
+    min-width: 300px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, .5), 0 0 7px 2px rgba(255, 255, 255, .3);
+    transition: all .5s ease-in-out;
+    opacity: 0;
+}
+.ie_guide.show{
+    opacity: 1;
+    transform: translate(-50%, 3px);
+}
+.ie_guide span{
+    width: 90%;
+    text-align: center;
+    font-size: .9em;
+}
+.ie_guide span:after{
+    content: '';
+    margin-top: 7px;
+    width: 80px;
+    height: 30px;
+    position: relative;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(../images/browser.png) no-repeat center;
+    background-size: contain;
+}
+.guide_close{
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: 5px;
+    right: 7px;
+    background: url(../images/close_icon.png) no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+}
+
 body{
     overflow: hidden;
 }
@@ -202,12 +253,13 @@ section:nth-child(5), section:nth-child(6){
 .text{
     position: absolute;
     opacity: 0;
-    transform: translateY(100px);
+    top: 50%;
+    transform: translateY(-60%);
     transition: all 0.5s 0.5s;
 }
 .text.show{
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-50%);
 }
 
 .big_title{
@@ -324,8 +376,10 @@ section:nth-child(2) .text{
 }
 #section_2_img{
     position: absolute;
-    right: 5vw;
-    width: 54vw;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5%;
+    width: 54%;
     max-width: 1200px;
 /*     background-color: orange; */
 }
@@ -346,6 +400,8 @@ section:nth-child(2) .text{
 
 #section_3_bg{
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     width: 50%;
     height: 100vh;
@@ -358,9 +414,10 @@ section:nth-child(3) .text{
     text-align: right;
 }
 #empty_glass{
-/*     position: fixed;
+    /* position: fixed; */
     top: 50%;
-    transform: translateY(-50%); */
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     z-index: 1;
     width: 40vw;
@@ -371,9 +428,10 @@ section:nth-child(3) .text{
     /* display: none; */
 }
 #full_glass{
-/*     position: fixed;
+    /* position: fixed; */
     top: 50%;
-    transform: translateY(-50%); */
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     width: 40vw;
     min-width: 400px;
@@ -392,6 +450,8 @@ section:nth-child(4) .text{
 #section_4_bg{
     position: absolute;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 50%;
     height: 100vh;
     background: url(../images/section_4_bg.png) no-repeat 50%;
@@ -412,6 +472,8 @@ section:nth-child(5) p{
 #section_5_bg{
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 50%;
     height: 100vh;
     background: url(../images/section_5_bg.png) no-repeat 50%;
@@ -430,6 +492,8 @@ section:nth-child(6) p{
 #section_6_bg{
     position: absolute;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 50%;
     height: 100vh;
     background: url(../images/section_6_bg.png) no-repeat 50%;
@@ -453,6 +517,8 @@ section:nth-child(7) .text:nth-child(3) p{
 #beer_finder{
     position: absolute;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 /*     background: url(../images/section_8_bg.png) no-repeat 50%; */
     background-size: cover;
 /*     background-color: red; */
@@ -481,6 +547,8 @@ section:nth-child(7) .text:nth-child(3) p{
     position: absolute;
     top: 27vh;
     float: left;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100vw;
     height: 8vh;/*100px*/
     background-color: white;
@@ -510,6 +578,21 @@ section:nth-child(7) .text:nth-child(3) p{
     color: white;
     font-family: 'IM Fell Double Pica', serif;
     font-size: 1.5em;
+    cursor: pointer;
+}
+#search_option button:hover{
+    animation: btn_animate .5s;
+}
+@keyframes btn_animate{
+    0%, 50%, 100%{
+        transform: scale(1);
+    }
+    25%{
+        transform: scale(0.9);
+    }
+    75%{
+        transform: scale(0.8);
+    }
 }
 #search_option input{
     border: none;
@@ -558,6 +641,9 @@ section:nth-child(9) button{
     font-family: 'IM Fell Double Pica', serif;
     font-size: 1.5em;
     cursor: pointer;
+}
+section:nth-child(9) button:hover{
+    animation: btn_animate .5s;
 }
 section:nth-child(9) button:focus{
     outline: none;
@@ -632,10 +718,14 @@ section:nth-child(10){
 }
 #newsletter{
     position: relative;
-    width: 90%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+/*     left: 50%;
+    transform: translate(-50%, -50%); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     transition: all .5s .5s ease-in-out;
 /*     background-color: orange; */
@@ -643,6 +733,7 @@ section:nth-child(10){
 #footer_bottom{
     position: absolute;
     right: 0;
+    top: 0;
     width: 50%;
     height: 100vh;
     color: white;
@@ -662,7 +753,7 @@ section:nth-child(10){
     /* background-color: blue; */
 }
 #footer_bottom input{
-    width: 75%;
+    width: 90%;
     border: none;
     border-radius: 7px;
     height: 55px;
@@ -675,7 +766,7 @@ section:nth-child(10){
     outline: none;
 }
 #footer_bottom button{
-    width: 23%;
+    width: 45%;
     max-width: 120px;
     height: 55px;
     background-color: #C50004;
@@ -685,6 +776,10 @@ section:nth-child(10){
     font-family: 'IM Fell Double Pica', serif;
     font-size: 1.5em;
     cursor: pointer;
+    margin-top: 15px;
+}
+#footer_bottom button:hover{
+    animation: btn_animate .5s;
 }
 #footer_bottom button:focus{
     outline: none;

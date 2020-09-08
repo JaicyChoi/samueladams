@@ -1,0 +1,676 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap');
+
+body{
+    position: relative;
+    width: 100%;
+}
+body.scroll_lock{
+    overflow: hidden;
+}
+.logo{
+    position: fixed;
+    width: 55px;
+    top: 16px;
+    left: 16px;
+    z-index: 1;
+}
+.menu_icon{
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    font-size: 3em;
+    color: white;
+    z-index: 2;
+}
+.menu{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell Double Pica', serif;
+    color: white;
+    font-size: 2.5em;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background-color: rgba(0, 0, 0, .7);
+    transition: all .5s ease;
+    display: flex;
+}
+.menu.show{
+    display: flex;
+    left: 0;
+}
+.menu li{
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+    transition: all .5s ease; 
+}
+.menu li:hover{
+    background-color: red;
+}
+.menu li:nth-child(6){
+    margin-bottom: 0;
+}
+.close_icon{
+    position: fixed;
+    top: -16px;
+    right: 16px;
+    font-size: 2.5em;
+}
+section{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.home{
+    width: 100%;
+    height: 100vh;
+    background: url(../images/mobile_bg.jpg) no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+.home:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .35);
+}
+.social{
+    position: absolute;
+    bottom: 25px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 210px;
+    z-index: 1;
+}
+.social:before{
+    content: '';
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    width: 1px;
+    height: 150px;
+    background-color: white;
+}
+.social li img{
+    width: 27px;
+}
+.main_logo{
+    background: url(../images/main_logo.png) no-repeat center;
+    background-size: contain;
+    width: 230px;
+    height: 120px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .7;
+}
+.about{
+    background: url(../images/blue_bg.png) no-repeat center;
+    background-size: cover;
+}
+.about:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .35);
+}
+.text_box{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, -50px);
+    top: 150px;
+    color: white;
+    transition: all 1s ease;
+    opacity: 0;
+    z-index: 1;
+}
+.text_box.show{
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.subtitle{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    margin-bottom: 5px;
+}
+.title{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 2.25em;
+    margin-bottom: 15px;
+}
+.description{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    text-align: justify;
+}
+.glass_img{
+    position: absolute;
+    bottom: 20px;
+    right: 115px;
+    background: url(../images/glass.png) no-repeat;
+    background-size: contain;
+    width: 170px;
+    height: 240px;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: .7s;
+}
+.glass_img.show{
+    transform: translateY(0);
+    opacity: 1;
+}
+.bottle_img{
+    position: absolute;
+    bottom: 20px;
+    right: 16px;
+    background: url(../images/bottle.png) no-repeat;
+    background-size: contain;
+    width: 90px;
+    height: 350px;
+    transform: translateY(30px);
+    transition: all 1s ease;
+    transition-delay: 1s;
+    opacity: 0;
+}
+.bottle_img.show{
+    transform: translateY(0);
+    opacity: 1;
+}
+.about_2{
+    background-color: #C50004;
+}
+.about_2_bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: url(../images/section_3_bg.png) no-repeat center;
+    background-size: cover;
+}
+.about_2_text_box{
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    right: 16px;
+    width: 45%;
+    color: white;
+    transition: all 1s ease;
+    opacity: 0;
+}
+.about_2_text_box.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.about_2_text_box .title{
+    text-align: right;
+}
+.about_3{
+    background-color: white;
+}
+.about_3_bg{
+    position: absolute;
+    background: url(../images/section_4_bg.png) no-repeat center;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    background-size: cover;
+}
+.about_3_text_box{
+    position: absolute;
+    width: 45%;
+    left: 16px;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    color: #021B3A;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.about_3_text_box.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.detail{
+    background-color: #1D1D1D;
+}
+.detail_bg{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: url(../images/section_5_bg.png) no-repeat center;
+    background-size: cover;
+}
+.detail_text_box{
+    position: absolute;
+    right: 16px;
+    width: 45%;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    color: white;
+    text-align: right;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.detail_text_box.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.subtitle_2{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.5em;
+}
+.detail_text_box .subtitle_2{
+    margin-top: 1.5em;
+    margin-bottom: 10px;
+}
+.detail_2{
+    background-color: #1D1D1D;
+}
+.detail_2_bg{
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: url(../images/section_6_bg.png) no-repeat center;
+    background-size: cover;
+}
+.detail_2_text_box{
+    position: absolute;
+    width: 45%;
+    left: 16px;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    color: white;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.detail_2_text_box.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.description_2{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.125em;
+    line-height: 1.25em;
+}
+.detail_2_text_box .subtitle_2{
+    margin-top: 1.5em;
+    margin-bottom: 10px;
+}
+.detail_2_text_box .subtitle_2:first-child{
+    margin-top: 0;
+}
+.detail_3{
+    background-color: #021B3A;
+}
+.detail_3_text_box_1{
+    position: absolute;
+    width: 45%;
+    left: 16px;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    color: white;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.detail_3_text_box_1.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.detail_3_text_box_1 .subtitle_2{
+    margin-bottom: 15px;
+}
+.detail_3_text_box_1 .subtitle{
+    line-height: 1.25em;
+    margin-bottom: 20px;
+}
+.detail_3_text_box_1 .title{
+    font-size: 3.25em;
+    line-height: 1.15em;
+}
+.detail_3_text_box_2{
+    position: absolute;
+    width: 45%;
+    right: 16px;
+    top: 50%;
+    transform: translateY(calc(-50% - 50px));
+    color: white;
+    text-align: right;
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: .5s;
+}
+.detail_3_text_box_2.show{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+.detail_3_text_box_2 .subtitle_2{
+    margin-top: 1.5em;
+    margin-bottom: 15px;
+}
+.detail_3_text_box_2 .description_2{
+    line-height: 1.35em;
+}
+.find{
+    
+}
+.top{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 180px;
+    background: url(../images/section_8_bg.png) no-repeat center;
+    background-size: cover;
+}
+.top:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .35);
+}
+.find_text_box{
+    position: absolute;
+    color: white;
+    z-index: 1;
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
+    transform: translateY(-30px);
+}
+.find_text_box.show{
+    transform: translateY(0);
+    opacity: 1;
+}
+.find_text_box .title{
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-size: 3.25em;
+}
+.search{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 110px;
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: .7s;
+}
+.search.show{
+    opacity: 1;
+}
+.search_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    color: #021B3A;
+}
+.find_near{
+    margin-bottom: 15px;
+}
+.find_near span{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    margin-right: 5px;
+}
+.find_near input{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 2px solid #021B3A;
+    width: 165px;
+}
+.filter{
+    font-family: 'IM Fell Double Pica', serif;
+}
+.filter span{
+    font-size: 1.25em;
+    margin-right: 5px;
+}
+select{
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #021B3A;
+}
+.search button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 7px;
+    background-color: #C50004;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+}
+.map{
+    position: relative;
+    float: left;
+    background: blue;
+    width: 100%;
+    height: calc(100% - 180px - 110px);
+}
+.share{
+    background-color: #C50004;
+}
+.container{
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: 25%;
+    filter: brightness(70%);
+    transition: all .5s .5s ease-in-out;
+}
+.gallery-item{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow: hidden;
+}
+.gallery-item .image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position:50% 50%;
+    opacity: 0;
+}
+.gallery-item .image.show{
+    opacity: 1;
+}
+.w-1{
+    grid-column: span 1;
+}
+.w-2{
+    grid-column: span 2;
+}
+.h-1{
+    grid-row: span 1;
+}
+.h-2{
+    grid-row: span 2;
+}
+.share_text_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 50px));
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: 1.1s;
+}
+.share_text_box.show{
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+.share_text_box .title{
+    font-size: 2em;
+    margin-top: 10px;
+}
+.share_text_box button{
+    width: 150px;
+    height: 50px;
+    border-radius: 7px;
+    background-color: #C50004;
+    border: none;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+    margin-top: 20px;
+}
+.subscribe{
+    color: white;
+    background: url(../images/last_bg.jpg) no-repeat right;
+    background-size: cover;
+}
+.subscribe:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .35);
+}
+.bg_text_box{
+    position: absolute;
+    bottom: 75px;
+    left: 16px;
+    width: 55%;
+}
+.bg_text_box .title{
+    margin-top: 3px;
+}
+.newsletter{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 50px));
+    z-index: 1;
+    text-align: center;
+    width: 95%;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.newsletter.show{
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+.newsletter .subtitle_2{
+    font-size: 1em;
+    margin-top: -5px;
+    margin-bottom: 25px;
+}
+.newsletter input{
+    width: 90%;
+    height: 45px;
+    border-radius: 7px;
+    border: none;
+    background: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1em;
+    text-indent: 10px;
+    margin-bottom: 15px;
+}
+.newsletter button{
+    width: 120px;
+    height: 50px;
+    background-color: #C50004;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 1.25em;
+}
+.footer_nav{
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    bottom: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 0.75em;
+}
+.copyright{
+    position: absolute;
+    bottom: 7px;
+    left: 16px;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 0.625em;
+    z-index: 1;
+}
+.copyright span:first-child{
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 380px){
+    .search button{
+        width: 80px;
+        height: 45px;
+    }
+}
+@media screen and (max-width: 360px){
+    body{
+        font-size: 14px;
+    }
+    .search input{
+        width: 150px;
+    }
+    .search button{
+        width: 75px;
+        height: 45px;
+    }
+}
+@media screen and (max-width: 320px){
+    body{
+        font-size: 13px;
+    }
+    .search input{
+        width: 140px;
+    }
+}

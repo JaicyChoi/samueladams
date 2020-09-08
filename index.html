@@ -8,8 +8,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="ico/favicon.ico">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ebcd98a38fe66ac054f060c35ec523e"></script>
+    <script>
+        //mobile check
+        let filter = 'win16|win32|win64|mac|macintel';
+
+        if( filter.indexOf(navigator.platform.toLowerCase()) < 0 )
+            location.href='m_index.html';
+            
+        //ie check
+        let agent = navigator.userAgent.toLowerCase();
+        let isIE = false;
+
+        if( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ){
+            alert('Internet Exploer로 접속하셨습니다.\n이 사이트는 모던 브라우저(MS Edge/Chrome/FIrefox)에 최적화 되어있습니다.\n\n모던 브라우저 접속을 권장합니다.');
+            isIE = true;
+            console.log(navigator.userAgent);
+        }
+        else
+            console.log('not ie');
+    </script>
 </head>
 <body>
+    <div class="ie_guide">
+        <span>이 사이트는 모던 브라우저(MS Edge/Chrome/Firefox)에 최적화되어 있습니다.</span>
+        <div class="guide_close"></div>
+    </div>
     <img id="logo" src="images/logo.png" alt="samueladams">
     <span id="menu-icon">&#9776;</span>
     <div id="menu-container">
@@ -157,7 +180,9 @@
                     <div id="filter_by_style">
                         <span class="description_text_big">Filter by style</span>
                         <select>
-                            <option selected>Rebel Grapefruit</option>
+                            <option selected>BostonLagar</option>
+                            <option>Sam 76</option>
+                            <option>Rebel Grapefruit</option>
                         </select>
                     </div>
                     <button>Cheers!</button>
