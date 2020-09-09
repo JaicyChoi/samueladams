@@ -475,7 +475,39 @@ section:nth-child(7) .text:nth-child(3){
 section:nth-child(7) .text:nth-child(3) p{
     margin-bottom: 43px;
 }
-
+.small_plates:before{
+    content: '';
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    background: url(../images/small_plates.png) no-repeat center;
+    background-size: contain;
+}
+.entrees:before{
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    margin-right: 7px;
+    top: 5px;
+    background: url(../images/entrees.png) no-repeat center;
+    background-size: contain;
+}
+.desserts:before{
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    margin-right: 7px;
+    top: 5px;
+    background: url(../images/desserts.png) no-repeat center;
+    background-size: contain;
+}
 #beer_finder{
     position: absolute;
     top: 0;
@@ -924,6 +956,12 @@ section:nth-child(10){
     .description_text{
         line-height: 1.3em;
     /*     background-color: green; */
+    }
+    #empty_glass{
+        display: none;
+    }
+    #full_glass{
+        display: none;
     }
     section:nth-child(3) .text{
         right: 3vw;

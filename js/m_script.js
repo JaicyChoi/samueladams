@@ -4,6 +4,7 @@ const menu = document.querySelector('.menu');
 const menu_li = document.querySelectorAll('.menu>li');
 const close_icon = document.querySelector('.close_icon');
 const section = document.querySelectorAll('section');
+const button = document.querySelectorAll('button');
 
 window.onbeforeunload = () => section[0].scrollIntoView();
 
@@ -52,6 +53,7 @@ window.addEventListener('scroll', () => {
 
     if( window.pageYOffset > section_height * 8 + section_height * 0.5 ){
         document.querySelector('.newsletter').classList.add('show');
+        document.querySelector('.indicator').classList.add('hide');
     }
     else if( window.pageYOffset > section_height * 7 + section_height * 0.5 ){
         image.forEach(image => image.classList.add('show'));
@@ -86,6 +88,7 @@ window.addEventListener('scroll', () => {
 
 function show_init(){
     document.querySelector('.newsletter').classList.remove('show');
+    document.querySelector('.indicator').classList.remove('hide');
     image.forEach(image => image.classList.remove('show'));
     document.querySelector('.share_text_box').classList.remove('show');
     document.querySelector('.find_text_box').classList.remove('show');
@@ -100,6 +103,11 @@ function show_init(){
     document.querySelector('.glass_img').classList.remove('show');
     document.querySelector('.bottle_img').classList.remove('show');
 }
+
+button.forEach(btn => btn.addEventListener('click', () => {
+    btn.classList.add('click');
+    setTimeout(() => {btn.classList.remove('click')}, 500);
+}));
 
 //map
 let mapContainer = document.querySelector('.map'),
