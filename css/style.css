@@ -188,42 +188,6 @@ body.scroll_fix{
     animation: animate 1.3s linear infinite;
     opacity: 0;
 }
-#mobile_indicator{
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-52%, -50%);
-    color: white;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-/*     background-color: blue; */
-    display: none;
-}
-#up{
-    position: absolute;
-    top: 5px;
-    width: 7%;
-    height: 7%;
-/*     background-color: green; */
-    background: url(../images/arrow_icon.png) no-repeat;
-    background-size: contain;
-    animation: mobile_up 1.3s linear infinite;
-    display: none;
-}
-#down{
-    position: absolute;
-    bottom: 5px;
-    transform: rotate(180deg);
-    width: 7%;
-    height: 7%;
-/*     background-color: green; */
-    background: url(../images/arrow_icon.png) no-repeat;
-    background-size: contain;
-    animation: mobile_down 1.3s linear infinite;
-}
-
 section{
     height: 100vh;
 /*     width: 1200px; */
@@ -232,8 +196,6 @@ section{
     align-items: center;
     background-color: #021B3A;
     position: relative;
-}
-section:nth-child(1){
 }
 section:nth-child(2){
     background: url(../images/blue_bg.png) no-repeat;
@@ -565,6 +527,7 @@ section:nth-child(7) .text:nth-child(3) p{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    opacity: 1;
 }
 #search_option span{
     color: #021B3A;
