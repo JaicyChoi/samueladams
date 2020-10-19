@@ -802,6 +802,17 @@ section:nth-child(10){
     justify-content: space-around;
 /*     background-color: red; */
 }
+.css_validator{
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+}
+.css_validator p:nth-child(1){
+    margin-right: 5px;
+}
 
 @keyframes animate{
     0%{
@@ -1026,5 +1037,19 @@ section:nth-child(10){
     #footer_bottom ul{
         width: 100vw;
 /*         background-color: red; */
+    }
+    .css_validator{
+        bottom: 15px;
+        width: 88px;
+        height: 120px;
+        display: inline;
+    }
+    .css_validator p:nth-child(1){
+        display: inline;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .css_validator p:nth-child(2){
+        margin-top: 5px;
     }
 }
