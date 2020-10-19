@@ -303,6 +303,7 @@ section:nth-child(5), section:nth-child(6){
     min-width: 177.6vh;
     min-height: 100vh;
     transform: translate(-50%, -50%);
+    border: none;
 }
 #mobile_home{
     position: absolute;
