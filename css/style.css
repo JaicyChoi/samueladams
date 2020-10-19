@@ -862,7 +862,7 @@ section:nth-child(10){
     #footer_bottom input{
         width: 90%;
         margin-bottom: 15px;
-        margin-right: none;
+        margin-right: 0;
     }
     #footer_bottom button{
         width: 30%;
